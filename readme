@@ -1,0 +1,34 @@
+Generic Array Class in C++
+Overview
+This project demonstrates the implementation of a generic Array class template in C++. The Array class provides a simple, type-safe, fixed-size array implementation that supports basic array operations, such as indexing, accessing data, and obtaining the size of the array. The project also showcases how to use this Array class with different data types, including int and std::string.
+
+Features
+Template-Based Design: The Array class is a template that can be instantiated with any data type, allowing for flexibility and reusability across different use cases.
+Fixed-Size Array: The array size is determined at compile-time, ensuring that the size of the array is known and does not change during runtime.
+Operator Overloading: The class overloads the array subscript operator ([]) to provide easy and intuitive access to elements within the array.
+Direct Access to Data: The class provides methods to access the underlying raw data, allowing for integration with low-level C-style functions such as memset.
+Const-Correctness: The class methods are designed with const-correctness in mind, ensuring that the array can be safely used in const contexts.
+Code Structure
+Array Class Template
+
+template<typename T, size_t S>
+class Array
+{
+public: 
+    int Size() const { return S; }
+
+    // Operator overloading for the array index operator
+    T& operator[](size_t index) { return m_Data[index]; }
+    const T& operator[](size_t index) const { return m_Data[index]; }
+
+    // Return the raw data pointer
+    T* Data() { return m_Data; }
+    const T* Data() const { return m_Data; }
+
+private:
+    T m_Data[S];  // The underlying array data
+};
+Key Methods
+Size(): Returns the size of the array. The size is a compile-time constant, ensuring that it cannot be changed at runtime.
+operator[]: Provides access to array elements through the subscript operator, with both non-const and const overloads.
+Data(): Returns a pointer to the underlying data, with both non-const and const overloads. This allows for direct manipulation of the array data.
